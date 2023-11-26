@@ -1,0 +1,78 @@
+.component-loader-container
+    position: absolute
+    top: 0
+    left: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    gap: 1rem
+    width: 100%
+    min-height: 200px
+    height: 100%
+    background-color: rgba($primary,.4)
+    border-top-left-radius: $normal-border-radius
+    border-top-right-radius: $normal-border-radius
+    user-select: none
+    z-index: 4
+
+.component-loader
+    animation: spinAround .5s infinite linear
+    position: relative
+    height: 3rem
+    width: 3rem
+    border-radius: 50%
+    border: .25rem solid $light
+    border-right-color: transparent
+    border-top-color: transparent
+
+.component-loader-text
+    color: $light
+    font-weight: bold
+    letter-spacing: 1px
+
+.page-loader-container
+    position: fixed
+    top: $navbar-height
+    left: $sidebar-container-w
+    display: flex
+    justify-content: center
+    align-items: center
+    gap: 1rem
+    width: 100%
+    min-height: calc( 100vh - $navbar-height )
+    height: 100%
+    background-color: rgba($primary,1)
+    user-select: none
+    z-index: 4
+    transform: translateY(-100%)
+    transition: .4s ease-in-out
+    opacity: 0
+    &.is-active
+        transform: translateY(0)
+        opacity: 1
+
+.page-loader
+    position: relative
+    height: 3rem
+    width: 3rem
+    display: flex
+    justify-content: center
+    align-items: center
+    & i
+        color: $light
+        font-size: 2rem
+    &::after
+        position: absolute
+        content: ''
+        animation: spinAround .5s infinite linear
+        height: 3rem
+        width: 3rem
+        border-radius: 50%
+        border: .25rem solid $light
+        border-right-color: transparent
+        border-top-color: transparent
+
+.page-loader-text
+    color: $light
+    font-weight: bold
+    letter-spacing: 1px

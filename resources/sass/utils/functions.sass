@@ -1,0 +1,5 @@
+@function darkOrWhiteFont($color)
+    @if (lightness($color) < 70)
+        @return $white
+    @else
+        @return $dark

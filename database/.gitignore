@@ -1,0 +1,3 @@
+bkps/
+*.sqlite
+*.sqlite-journal

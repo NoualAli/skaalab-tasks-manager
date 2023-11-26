@@ -1,0 +1,145 @@
+$modal-card-bg: $body-bg
+$modal-card-radius: 6px
+$modal-card-padding: 0 1.25rem
+$modal-card-shadows: 0px 1.2px 3.6px rgba(0, 0, 0, 0.11), 0px 6.4px 14.4px rgba(0, 0, 0, 0.13)
+$modal-overlay-bg: rgba(#242424, .5)
+$modal-header-height: 4rem
+$modal-footer-height: 4rem
+$modal-header-padding: 1rem
+$modal-footer-padding: 1rem
+.modal
+    opacity: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100vh
+    overflow: auto
+    z-index: -1000
+    transition: .2s ease-in-out
+    &.expanded
+        padding: 0
+        & .modal-card
+            border-radius: 0
+            width: 100vw
+            max-width: 100%
+            height: 100vh
+            transform: scale(0)
+            transition: .2s ease-in-out
+        & .modal-body
+            min-height: calc( 100vh - ($modal-header-height + $modal-footer-height + $modal-header-padding + $modal-footer-padding + 13px) ) !important
+    &.reduced
+        width: 100vw
+        height: 200px
+        & .modal-footer, .modal-body
+            display: none
+        & .modal-overlay
+            opacity: 0
+            z-index: -1000
+        & .modal-card
+            position: absolute
+            top: 100vh
+            left: 0
+            border-radius: 0
+            width: 100vw
+            height: 200px
+    @media screen and (max-width: 780px)
+        padding: 0
+        height: 100%
+    &.active
+        display: flex
+        opacity: 1
+        z-index: 1031
+        transform: scale(1)
+        & .modal-card
+            transform: scale(1)
+        & .modal-overlay
+            opacity: 1
+            z-index: 0
+    & .modal-overlay
+        position: absolute
+        top: 0
+        left: 0
+        background-color: $modal-overlay-bg
+        height: 100%
+        width: 100%
+        opacity: 0
+        z-index: -1000
+        transition: .2s ease-in-out
+    & .modal-card
+        display: flex
+        flex-direction: column
+        align-items: flex-start
+        gap: 18px
+        position: sticky
+        top: 0
+        transform: scale(0)
+        min-width: 648px
+        max-width: 1024px
+        margin: 0 auto
+        max-height: 100%
+        height: 95%
+        overflow-y: auto
+        z-index: 30
+        transition: .2s ease-in-out
+        background-color: $modal-card-bg
+        border-radius: $modal-card-radius
+        box-shadow: $modal-card-shadows
+        padding: $modal-card-padding
+        @media screen and (max-width: $desktop)
+            border-radius: 0
+            width: 100%
+            max-width: 100%
+            height: 100%
+        & .modal-header
+            min-height: $modal-header-height
+            width: 100%
+            font-size: 18px
+            display: flex
+            justify-content: space-between
+            align-items: center
+            padding: $modal-header-padding
+            & .modal-action-icon
+                &:hover
+                    cursor: pointer
+                    scale: 1.2
+            & .modal-close-button
+                &:hover
+                    color: $danger
+            & .modal-expand-button, & .modal-reduce-button
+                &:hover
+                    color: $warning
+        & .modal-body
+            min-height: calc( 95% - ($modal-footer-height + $modal-header-height) )
+            max-height: calc(100vh - ($modal-footer-height + $modal-header-height))
+            height: auto
+            overflow: auto
+            width: 100%
+            padding: 1rem
+        & .modal-footer
+            min-height: $modal-footer-height
+            width: 100%
+            padding: $modal-footer-padding
+            background-color: $modal-card-bg
+            display: flex
+            justify-content: flex-end
+            align-items: center
+            gap: 1rem
+        & .modal-header, & .modal-footer
+            position: relative
+            &::after
+                content: ''
+                position: absolute
+                left: 1rem
+                width: 98%
+                height: 1px
+                background-color: $grey
+        & .modal-header
+            &::after
+                bottom: 0
+        & .modal-footer
+            &::after
+                top: 0

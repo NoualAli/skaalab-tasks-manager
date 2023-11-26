@@ -1,0 +1,35 @@
+//   font-family: "Share Tech Mono", monospace;
+.is-divider
+    color: $dracula
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .45)
+    display: flex
+    justify-content: center
+    align-items: center
+    margin: 1rem 0
+    &::before,
+    &::after
+        content: ''
+        display: block
+        height: 0.09em
+        min-width: 30vw
+    &::before
+        background: linear-gradient(to right, rgba(240,240,240,0), $dracula)
+        margin-right: 4vh
+    &::after
+        background: linear-gradient(to left, rgba(240,240,240,0),$dracula)
+        margin-left: 4vh
+
+.divider
+    position: relative
+    width: 95%
+    margin: 10px auto
+    &::after
+        content: ''
+        position: absolute
+        width: 100%
+        background-color: $primary
+        height: 2px
+        border-radius: 50%
+        @for $i from 2 through 10
+            & .is-#{$i}
+                height: $i*.25

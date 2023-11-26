@@ -1,0 +1,203 @@
+.sidebar-container
+    height: $sidebar-container-h
+    width: $sidebar-container-w
+    border-right: 1px solid $white
+    background-color: $sidebar-bg
+    overflow-x: hidden
+    font-size: 1rem
+    transition-property: width, overflow-x
+    transition-duration: .2s
+    transition-timing-function: ease
+    z-index: 5
+    & ::selection
+        background-color: $sidebar-links-active-bg
+        color: $sidebar-links-active-color
+    &:hover, &.is-active
+        width: $sidebar-container-w-active !important
+        overflow: visible
+        & .sidebar
+            width: 100%
+            &-item
+                justify-content: start
+                width: 100%
+            &-icon_text
+                display: block
+                opacity: 1
+            &-footer
+                width: $sidebar-container-w-active
+                & .logout-btn
+                    justify-content: start
+                    & .sidebar-icon_text
+                        display: block
+            &-header
+                width: $sidebar-container-w-active
+                & .brand
+                    z-index: 2
+                    &::after
+                        background-color: $primary
+                        z-index: 1
+                & .active-brand
+                    z-index: 4
+                    &::after
+                        background-color: transparent
+                        z-index: 3
+    @media screen and ( max-width: $tablet )
+        transform: translateX(-100vw)
+        &.is-active
+            transform: translateX(0)
+            z-index: 100
+            width: 100vw
+            border: none
+.sidebar
+    overflow: hidden
+    height: $sidebar-h
+    width: $sidebar-container-w-active !important
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    &-header
+        position: relative
+        height: $sidebar-header-h
+        display: flex
+        justify-content: center
+        align-items: center
+        width: $sidebar-container-w
+        overflow: hidden
+        transition: .2s ease
+        & .brand
+            position: absolute
+            top: 0
+            left: 0
+            display: block
+            height: 100%
+            width: $sidebar-container-w-active
+            object-fit: cover
+            background-color: $body-bg
+            background-image: url('/storage/assets/brand.png')
+            background-size: 20%
+            background-repeat: no-repeat
+            background-position: 10% center
+            z-index: 4
+            &::after
+                content: ''
+                position: absolute
+                top: 0
+                left: 0
+                width: 100%
+                height: 100%
+                background-color: transparent
+                z-index: 3
+        & .active-brand
+            position: absolute
+            top: 0
+            left: 0
+            height: 100%
+            width: $sidebar-container-w-active
+            display: block
+            background-color: $body-bg
+            background-image: url('/storage/assets/brand.png')
+            background-size: 20%
+            background-repeat: no-repeat
+            background-position: 10% center
+            z-index: 2
+            &::after
+                content: ''
+                position: absolute
+                top: 0
+                left: 0
+                width: 100%
+                height: 100%
+                background-color: $primary
+                z-index: 1
+    &-footer
+        overflow: hidden
+        height: $sidebar-footer-h
+        display: flex
+        justify-content: start
+        align-content: center
+        width: $sidebar-container-w
+        transition: .2s ease
+        & .logout-btn
+            position: relative
+            display: flex
+            text-align: center !important
+            justify-content: center !important
+            border-radius: 0 !important
+            border: none
+            border-right: 1px solid $white
+            margin: 0 !important
+            width: $sidebar-container-w-active !important
+            height: 100%
+            background-color: $primary
+            font-size: 1rem
+            &:hover
+                background-color: $danger-dark !important
+                color: $white !important
+                font-weight: bold !important
+                & .sidebar-icon
+                    color: $white !important
+            &.is-loading
+                cursor: not-allowed
+                opacity: .5
+                background-color: $danger-dark !important
+                user-select: none
+    &-body
+        height: $sidebar-body-h
+        overflow-x: hidden
+        overflow-y: auto !important
+        border-bottom: 1px solid $grey
+        border-top: 1px solid $grey
+        display: flex
+        flex-direction: column
+        gap: 10px
+        padding: 9px
+    &-item
+        // white-space: nowrap
+        position: relative
+        // width: 100%
+        width: calc($sidebar-container-w - 22px)
+        color: $white !important
+        display: flex
+        align-items: center
+        justify-content: center
+        // justify-content: start
+        padding: 16px 11px
+        gap: .5rem
+        border-radius: 6px
+        // transition: .2s ease-in-out
+        overflow: hidden
+        &:hover,&.router-link-exact-active
+            font-weight: 900 !important
+            background-color: $sidebar-links-active-bg
+            color: $sidebar-links-active-color !important
+            & .sidebar-icon
+                color: $primary
+    &-icon
+        font-size: 2rem
+    &-icon_text
+        font-size: .8rem
+        opacity: 0
+        display: none
+        // transition: opacity .2s ease-in-out
+    &-submenu
+        cursor: pointer
+        position: relative
+        overflow: hidden
+        border-radius: 6px
+        display: flex
+        flex-direction: column
+        justify-content: start
+        gap: 10px
+        height: 50px
+        max-height: 3000px
+        transition: .2s ease-in-out
+        &.expanded
+            overflow-y: auto
+            height: auto
+            background-color: $primary
+            & .is-active
+                font-weight: 900 !important
+                background-color: $sidebar-links-active-bg
+                color: $sidebar-links-active-color !important
+        & .sidebar-item
+            border-radius: none !important

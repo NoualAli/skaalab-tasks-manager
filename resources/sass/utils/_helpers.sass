@@ -1,0 +1,177 @@
+// Height & Width
+.w-auto
+    width: auto
+.h-auto
+    height: auto
+@for $i from 1 through 100
+    $value: $i*10
+    .vh-#{$value}
+        height: #{$value}vh
+    .vw-#{$value}
+        width: #{$value}vw
+    .h-#{$value}
+        height: #{$value}+'%'
+    .w-#{$value}
+        width: #{$value}+'%'
+@each $breakpoint in $breakpoints-list
+    @media screen and (min-width: nth($breakpoint, 2))
+        .w-#{nth($breakpoint, 1)}-auto
+            width: auto
+        .h-#{nth($breakpoint, 1)}-auto
+            height: auto
+    @for $i from 1 through 10
+        $value: $i*10
+        .vh-#{nth($breakpoint, 1)}-#{$value}
+            height: #{$value}vh
+        .vw-#{nth($breakpoint, 1)}-#{$value}
+            width: #{$value}vw
+        .h-#{nth($breakpoint, 1)}-#{$value}
+            height: #{$value}+'%'
+        .w-#{nth($breakpoint, 1)}-#{$value}
+            width: #{$value}+'%'
+
+// Text, Backgrounds & Borders
+.no-bg
+    background: transparent !important
+
+.shadowless
+    box-shadow: none !important
+@each $value in $text-weight
+    .text-#{$value}
+        font-weight: $value
+
+@each $value in $text-dir
+    .text-#{$value}
+        text-align: $value
+
+@each $value in $colors-list
+    .text-#{nth($value, 1)}
+        color: nth($value, 2)
+    .bg-#{nth($value, 1)}
+        background-color: nth($value, 2)
+    .border-#{nth($value, 1)}
+        border-color: nth($value, 2)
+    // .box
+    //     &.is-#{nth($value, 1)}
+    //         background-color: nth($value, 2)
+    //         color: darkOrWhiteFont(nth($value, 2))
+@for $i from 1 through 12
+    .border-#{$i}
+        border-width: $i * .15rem
+        border-style: solid
+// Margins & Paddings
+.m-auto
+    margin: auto
+@each $direction, $code in $directions-list
+    @if $code == x
+        .mx-auto
+            margin-left: auto
+            margin-right: auto
+    @else if $code == y
+        .my-auto
+            margin-top: auto
+            margin-bottom: auto
+    @else
+        .m#{$code}-auto
+            margin-#{$direction}: auto
+@for $i from 0 through 12
+    .mx-#{$i}
+        margin-left: $i * .25rem
+        margin-right: $i * .25rem
+@for $i from 0 through 12
+    .my-#{$i}
+        margin-top: $i * .25rem
+        margin-bottom: $i * .25rem
+@for $i from 0 through 12
+    .m-#{$i}
+        margin: $i * .25rem !important
+@for $i from 0 through 12
+    .mb-#{$i}
+        margin-bottom: $i * .25rem
+@for $i from 0 through 12
+    .mt-#{$i}
+        margin-top: $i * .25rem
+@for $i from 0 through 12
+    .ml-#{$i}
+        margin-left: $i * .25rem
+@for $i from 0 through 12
+    .mr-#{$i}
+        margin-right: $i * .25rem
+@for $i from 0 through 12
+    .px-#{$i}
+        padding-left: $i * .25rem
+        padding-right: $i * .25rem
+@for $i from 0 through 12
+    .py-#{$i}
+        padding-top: $i * .25rem
+        padding-bottom: $i * .25rem
+@for $i from 0 through 12
+    .p-#{$i}
+        padding: $i * .25rem
+@for $i from 0 through 12
+    .pb-#{$i}
+        padding-bottom: $i * .25rem
+@for $i from 0 through 12
+    .pt-#{$i}
+        padding-top: $i * .25rem
+@for $i from 0 through 12
+    .pl-#{$i}
+        padding-left: $i * .25rem
+@for $i from 0 through 12
+    .pr-#{$i}
+        padding-right: $i * .25rem
+
+// Borders
+.has-border-radius
+    border-radius: .25rem
+
+.is-radiusless-top
+    border-top-left-radius: none
+    border-top-right-radius: none
+
+.is-radiusless-bottom
+    border-bottom-left-radius: none
+    border-bottom-right-radius: none
+
+.has-border-radius-half
+    border-radius: 50% !important
+
+@for $i from 1 through 10
+    .has-border-radius-#{$i}
+        border-radius: $i * .25rem
+
+// Border radius
+@each $direction, $code in $border-radius-directions-list
+    .is-radiusless-#{$code}
+        border-#{$direction}-radius: none
+    .has-border-radius-#{$code}
+        border-#{$direction}-radius: .25rem
+        @for $i from 1 through 10
+            &.is-#{$i}
+                border-#{$direction}-radius: $i * .25rem
+
+// style
+@each $style in $border-styles
+    .has-border-style-#{$style}
+        border-style: $style
+
+.text-decoration-none
+    text-decoration: none
+
+.is-clickable
+    cursor: pointer !important
+
+.text-small
+    font-size: 13px
+
+.text-normal
+    font-size: 16px
+
+.text-medium
+    font-size: 22px
+
+.text-large
+    font-size: 28px
+
+.text-extra-large
+    font-size: 32px

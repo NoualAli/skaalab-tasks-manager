@@ -1,0 +1,52 @@
+.d-flex
+    // width: 100%
+    @for $i from 0 through 12
+        &.gap-#{$i}
+            gap: $i * .25rem
+    &.full-center
+        align-items: center
+        justify-content: center
+    @each $justify in $flex-justify
+        &.justify-#{nth($justify, 1)}
+            justify-content: nth($justify, 2)
+    @each $align in $flex-align
+        &.align-#{$align}
+            align-items: $align
+    @each $direction in $flex-directions
+        &.is-#{$direction}
+            flex-direction: $direction
+@media screen and (min-width: $mobile)
+    .d-flex
+        &.full-center
+            align-items: center
+            justify-content: center
+        @each $justify in $flex-justify
+            &.justify-#{nth($justify, 1)}
+                justify-content: nth($justify, 2)
+        @each $align in $flex-align
+            &.align-#{nth($align, 1)}
+                align-items: nth($align, 2)
+        @each $direction in $flex-directions
+            &.is-#{$direction}
+                flex-direction: $direction
+
+@each $breakpoint in $breakpoints-list
+    @media screen and (min-width: nth($breakpoint, 2))
+        @each $justify in $flex-justify
+            .d-flex.justify-#{nth($breakpoint, 1)}-#{nth($justify, 1)}
+                justify-content: nth($justify, 2)
+        @each $align in $flex-align
+            .d-flex.align-#{nth($breakpoint, 1)}-#{$align}
+                align-items: $align
+        @each $direction in $flex-directions
+            .d-flex.is-#{nth($breakpoint, 1)}-#{$direction}
+                flex-direction: $direction
+
+@each $display in $display-list
+    .d-#{$display}
+        display: $display
+@each $breakpoint in $breakpoints-list
+    @media screen and (min-width: nth($breakpoint, 2))
+        @each $display in $display-list
+            .d-#{nth($breakpoint, 1)}-#{$display}
+                display: $display

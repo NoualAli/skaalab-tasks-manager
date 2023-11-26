@@ -1,0 +1,115 @@
+// Buttons
+$btn-padding: 10px 15px
+$btn-radius-full: 100px
+$btn-radius: 6px
+$btn-color: $primary
+$btn-border: 1px solid $primary
+$btn-shadow: 0 0.0625em 0.125em rgb(10 10 10 / 5%)
+$btn-fs: 1rem
+$btn-bg: $white
+
+// Hover
+$btn-hover-bg: $primary
+$btn-hover-shadow: 0px 0px 1.3px rgba(0, 0, 0, 0.016), 0px 0px 4.2px rgba(0, 0, 0, 0.024), 0px 0px 19px rgba(0, 0, 0, 0.04)
+
+.btn-group
+    display: flex
+    & .btn
+        border-radius: 0 !important
+        &:last-child
+            border-radius: $btn-radius !important
+            border-top-left-radius: 0 !important
+            border-bottom-left-radius: 0 !important
+        &:first-child
+            border-radius: $btn-radius !important
+            border-top-right-radius: 0 !important
+            border-bottom-right-radius: 0 !important
+.btn
+    padding: $btn-padding
+    border-radius: $btn-radius
+    color: $btn-color
+    border: $btn-border
+    box-shadow: $btn-shadow
+    font-size: $btn-fs
+    background-color: $btn-bg
+    cursor: pointer
+    transition: .1s ease
+    &.is-radius
+        border-radius: $btn-radius-full
+    & .btn-text
+        font-weight: 800
+        display: block
+    & .btn-loader
+        display: none
+    & .icon
+        stroke: $btn-color
+    &.is-loading
+        cursor: not-allowed
+        opacity: .5
+        & .btn-text
+            display: none
+        & .btn-loader
+            display: block
+    &.btn-submit
+        border-radius: 100px
+    &:hover
+        background-color: $btn-hover-bg
+        color: darkOrWhiteFont($btn-hover-bg)
+        box-shadow: $btn-hover-shadow
+    @each $color in $colors-list
+        &.btn-#{nth($color, 1)}
+            background-color: lighten(nth($color, 2), 60%)
+            color: nth($color, 2)
+            border-color: lighten(nth($color, 2), 10%)
+            & .icon
+                stroke-width: 0
+                stroke: currentColor
+                fill: currentColor
+            &:hover
+                color: darkOrWhiteFont(nth($color, 2))
+                background-color: lighten(nth($color, 2), 10%)
+                border-color: lighten(nth($color, 2), 10%)
+                & .icon
+                    stroke: darkOrWhiteFont(nth($color, 2))
+            &.is-active
+                background-color: nth($color, 2)
+                color: darkOrWhiteFont(nth($color, 2))
+                border-color: nth($color, 2), 10%
+            &.reverse
+                background-color: transparent
+                color: nth($color, 2)
+                border-color: nth($color, 2), 10%
+                &:hover
+                    background-color: nth($color, 2)
+                    color: darkOrWhiteFont(nth($color, 2))
+                    border-color: lighten(nth($color, 2), 10%)
+    &.has-icon
+        display: inline-flex
+        justify-content: center
+        align-items: center
+        gap: 0 5px
+
+.btn-loading
+    position: relative
+    pointer-events: none
+    color: transparent !important
+    &:after
+        animation: spinAround 500ms infinite linear
+        border: 2px solid #dbdbdb
+        border-radius: 50%
+        border-right-color: transparent
+        border-top-color: transparent
+        content: ""
+        display: block
+        height: 1em
+        width: 1em
+        position: absolute
+        left: calc(50% - (1em / 2))
+        top: calc(50% - (1em / 2))
+
+@keyframes spinAround
+    from
+        transform: rotate(0deg)
+
+    to
+        transform: rotate(359deg)

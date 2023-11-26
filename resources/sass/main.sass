@@ -1,0 +1,410 @@
+$footer-height: 5rem
+
+$layout-w: 100vw
+$layout-h: 100vh
+$navbar-height: 64px
+
+$content-container-height: calc(100vh - $navbar-height)
+
+$sidebar-container-w: 85px
+$sidebar-container-w-active: 232px
+$sidebar-container-h: 100vh
+$sidebar-h: 100vh
+$sidebar-header-h: $navbar-height
+$sidebar-footer-h: $navbar-height
+$sidebar-body-h: calc(100vh - ($sidebar-header-h + $sidebar-footer-h))
+
+$sidebar-header-h: $navbar-height
+$sidebar-footer-h: $navbar-height
+$sidebar-body-h: calc($sidebar-container-h - ($sidebar-header-h + $sidebar-footer-h))
+$sidebar-bg: $primary
+
+$sidebar-links-color: $white
+$sidebar-links-active-color: $dark
+$sidebar-links-active-bg: $white
+$sidebar-links-active-hover-bg: $sidebar-links-active-bg
+
+$main-container-w: calc( 100vw - $sidebar-container-w )
+$main-container-w-sm: 100vw
+$main-container-w-active: $main-container-w
+$main-container-h: $layout-h
+$main-container-bg: $body-bg
+$body-fs: 1rem
+$normal-border-radius: 6px
+
+*
+    margin: 0
+    padding: 0
+    box-sizing: border-box
+    font-family: 'Archivo', Tahoma, Geneva, Verdana, sans-serif
+
+html
+    height: 100%
+    width: 100%
+#app,
+body
+    position: relative
+    height: 100%
+    min-height: 100vh
+    max-width: 100vw
+    margin: 0
+    padding: 0
+    background-color: $body-bg
+    font-size: $body-fs
+    color: $main-text-color !important
+main
+    padding: 1rem 0
+    height: auto
+footer
+    background-color: $grey
+    height: $footer-height
+    display: flex
+    justify-content: center
+    align-items: center
+    font-weight: bold
+    font-family: inherit
+
+// .main-layout
+//     min-height: 100vh
+//     height: 100vh
+//     max-height: 100vh
+//     overflow: hidden
+
+a
+    text-decoration: none
+    &.has-icon
+        display: flex
+        justify-content: space-between
+        align-items: center
+        gap: 10px
+    & .svg-inline--fa
+        font-size: 12px !important
+
+.icon
+    height: 1.5rem
+    width: auto
+    &.las,&.lab
+        line-height: auto
+        height: auto !important
+        font-size: 1.5rem
+
+.main-layout
+    height: $layout-h
+    max-height: $layout-h
+    width: $layout-w
+    max-width: $layout-w
+    overflow: hidden
+    display: flex
+    gap: 0 !important
+    & .main-container
+        position: relative
+        width: $main-container-w
+        height: $main-container-h
+        overflow: hidden
+        background-color: $main-container-bg
+        border-right: 1px solid $grey
+        & .header-container
+            height: $navbar-height
+            border-bottom: 1px solid $white
+            position: relative
+            display: flex
+            justify-content: space-between
+            align-items: center
+            gap: 0 20px
+            color: $white
+            background-color: $primary-extra-light
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .1),0 1px 2px 0 rgba(0, 0, 0, .06)
+            z-index: 6
+            & .notification-link
+                color: $dark
+                &.notified
+                    color: $primary
+                    & i
+                        -webkit-animation: ring 1.5s ease infinite
+                        animation: ring 1.5s ease infinite
+                        transform-origin-x: 50%
+                        transform-origin-y: 0px
+                        transform-origin-z: initial
+                        &::after
+
+            & .username
+                color: $dark
+            & ::selection
+                color: $white
+                background-color: $primary
+            & .title-side, & .actions-side
+                padding: 5px 10px
+                height: $navbar-height
+                display: flex
+                align-items: center
+                color: $white
+            & .title-side
+                flex-direction: column
+                gap: 10px
+                align-items: flex-start
+                justify-content: center
+                font-weight: 600
+                height: 100%
+            & .actions-side
+                justify-content: flex-end
+                gap: 0 20px
+                & .user-profile
+                    display: flex
+                    align-items: center
+                    gap: 10px
+                    font-weight: 600
+                    font-size: 14px
+        & .content-container
+            position: relative
+            height: $content-container-height
+            overflow: auto
+            scrollbar-color: $primary $secondary
+            scrollbar-width: thin
+            scrollbar-gutter: stable
+            & ::selection
+                color: $white
+                background-color: $primary
+            @media screen and ( max-width: $tablet )
+                max-width: $main-container-w-sm
+        @media screen and ( max-width: $tablet )
+            width: $main-container-w-sm
+            position: absolute
+            left: 0
+            top: 0
+.am-breadcrumbs__list
+    display: flex
+    align-items: center
+    flex-wrap: wrap
+    gap: 10px 20px
+    list-style: none
+    & .parent-breadcrumb
+        position: relative
+        @media screen and (max-width: $desktop)
+            display: none
+        & a
+            display: block
+            color: $dark
+        &::after
+            content: '/'
+            position: absolute
+            right: -10px
+            top: 50%
+            transform: translateY(-50%)
+    & .am-breadcrumbs__link
+        color: $dark
+        &.am-breadcrumbs__link_current
+            color: $dark
+
+.no-data
+    position: relative
+    width: 100%
+    height: calc( $content-container-height - 120px )
+    text-align: center
+    & svg
+        height: 100%
+        width: auto
+
+::-webkit-scrollbar
+    width: 10px
+
+::-webkit-scrollbar-track
+    background-color: $primary-extra-light
+
+// ::-webkit-scrollbar-thumb
+//     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3)
+
+::-webkit-scrollbar-thumb
+    background-image: linear-gradient(180deg, $primary 0%, $secondary 99%)
+    box-shadow: inset 2px 2px 5px 0 rgba(#fff, 0.5)
+    border-radius: 100px
+
+.badge
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 1.5rem
+    width: 1.5rem
+    border-radius: .75rem
+    background-color: $danger
+    color: $white !important
+    text-align: center
+    vertical-align: baseline
+    font-weight: bold
+    &.is-blink
+        animation: bounce-out-top 1.5s infinite both
+
+.avatar
+    position: relative
+    display: flex
+    justify-content: center
+    align-items: center
+    position: relative
+    height: 40px
+    width: 40px
+    border-radius: 50%
+    background-color: $white
+    &.is-bordered
+        border: 1px solid $dracula
+    & img
+        border-radius: 50%
+        width: 100%
+        height: 100%
+
+.label
+    color: $dracula
+    font-weight: 700
+
+a
+    text-decoration: none
+    &:link
+        color: $primary
+    &:visited
+        color: $primary
+    &:hover
+        color: $primary
+    &:active
+        color: $primary
+
+@keyframes bounce-out-top
+    0%
+        transform: translateY(0)
+        animation-timing-function: ease-out
+
+    5%
+        transform: translateY(-5px)
+        animation-timing-function: ease-in
+
+    15%
+        transform: translateY(0)
+        animation-timing-function: ease-out
+
+    25%
+        transform: translateY(-8px)
+        animation-timing-function: ease-in
+
+    38%
+        transform: translateY(0)
+        animation-timing-function: ease-out
+
+    52%
+        transform: translateY(-10px)
+        animation-timing-function: ease-in
+
+    70%
+        transform: translateY(0)
+        animation-timing-function: ease-out
+
+    85%
+        opacity: 1
+
+    100%
+        opacity: 1
+
+@keyframes ring
+    0%
+        -webkit-transform: rotate(-15deg)
+        -ms-transform: rotate(-15deg)
+        transform: rotate(-15deg)
+
+    2%
+        -webkit-transform: rotate(15deg)
+        -ms-transform: rotate(15deg)
+        transform: rotate(15deg)
+
+    4%
+        -webkit-transform: rotate(-18deg)
+        -ms-transform: rotate(-18deg)
+        transform: rotate(-18deg)
+
+    6%
+        -webkit-transform: rotate(18deg)
+        -ms-transform: rotate(18deg)
+        transform: rotate(18deg)
+
+    8%
+        -webkit-transform: rotate(-22deg)
+        -ms-transform: rotate(-22deg)
+        transform: rotate(-22deg)
+
+    10%
+        -webkit-transform: rotate(22deg)
+        -ms-transform: rotate(22deg)
+        transform: rotate(22deg)
+
+    12%
+        -webkit-transform: rotate(-18deg)
+        -ms-transform: rotate(-18deg)
+        transform: rotate(-18deg)
+
+    14%
+        -webkit-transform: rotate(18deg)
+        -ms-transform: rotate(18deg)
+        transform: rotate(18deg)
+
+    16%
+        -webkit-transform: rotate(-12deg)
+        -ms-transform: rotate(-12deg)
+        transform: rotate(-12deg)
+
+    18%
+        -webkit-transform: rotate(12deg)
+        -ms-transform: rotate(12deg)
+        transform: rotate(12deg)
+
+    20%
+        -webkit-transform: rotate(0deg)
+        -ms-transform: rotate(0deg)
+        transform: rotate(0deg)
+
+ul
+    margin: 0 0 0 1em
+    padding: 0
+
+.content
+    font-size: 1.25rem
+    line-height: 1.5
+    & ul
+        padding-left: 1.5em
+        & li
+            position: relative
+            list-style-type: none
+            padding-left: 1.5em
+            &::before
+                content: "\2022"
+                position: absolute
+                left: 5px
+
+.btn-filter
+    padding: 6px 10px
+
+.component-loader-container
+    position: absolute
+    top: 0
+    left: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    gap: 1rem
+    width: 100%
+    min-height: 200px
+    height: 100%
+    background-color: rgba($primary,.4)
+    border-top-left-radius: $normal-border-radius
+    border-top-right-radius: $normal-border-radius
+    user-select: none
+    z-index: 4
+
+.component-loader
+    animation: spinAround .5s infinite linear
+    position: relative
+    height: 3rem
+    width: 3rem
+    border-radius: 50%
+    border: .25rem solid $light
+    border-right-color: transparent
+    border-top-color: transparent
+
+.component-loader-text
+    color: $light
+    font-weight: bold
+    letter-spacing: 1px

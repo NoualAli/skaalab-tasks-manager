@@ -1,0 +1,99 @@
+$bh-height: 60px
+$bn-height: $bh-height
+$bh-bg: $white
+
+.b-header
+    position: relative
+    height: $bh-height
+    display: flex
+    flex-direction: row
+    gap: 0
+    align-items: center
+    background-color: $bh-bg
+    padding: 0 20px
+    & .b-navbar
+        background-color: $bh-bg
+        height: $bn-height
+        width: 80%
+        display: flex
+        justify-content: space-between
+        align-items: center
+        gap: 0
+        & .bn-start
+            height: $bh-height
+            width: auto
+            background-color: $bh-bg
+        & .bn-end
+            height: $bh-height
+            width: auto
+            background-color: $bh-bg
+            display: flex
+            justify-content: center
+            align-items: center
+        @media screen and (max-width: $tablet)
+            width: 100%
+            display: none
+            position: absolute
+            top: 100%
+            left: 0
+            height: 100%
+            z-index: 1000
+            &.is-active
+                display: block
+    & .b-brand
+        width: 20%
+        height: $bh-height
+        display: flex
+        justify-content: center
+        align-items: center
+        & img
+            max-height: calc($bh-height - 20px)
+        @media screen and (max-width: $tablet)
+            width: 100%
+    & .hamburger
+        display: none
+        @media screen and (max-width: $tablet)
+            display: block
+    & .b-dropdown
+        position: relative
+        height: 100%
+        width: 100%
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        & .b-dropdown-btn
+            list-style: none
+            cursor: pointer
+            width: 40px
+            height: 40px
+            border-radius: 50%
+            & img
+                border-radius: 50%
+                height: 100%
+                width: auto
+        & .b-dropdown-menu
+            display: none
+            min-width: 350px
+            position: absolute
+            top: 100%
+            width: auto
+            flex-direction: column
+            background-color: $bh-bg
+            z-index: -1000
+            &.is-active
+                display: flex
+                z-index: 999
+                @media screen and (max-width: $tablet)
+                    width: 100%
+            & .b-dropdown-item
+                list-style: none
+                word-break: keep-all
+                display: block
+                &>*
+                    display: block
+                    padding: .5rem .8rem
+                    border-bottom: 1px solid $dark
+                    color: $dark
+                    &:hover
+                        color: lighten($dark, 20%)

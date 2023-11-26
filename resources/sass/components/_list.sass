@@ -1,0 +1,26 @@
+$list-item-content-p: 6px 12px
+$list-item-content-bg: $primary-extra-light
+$list-item-content-w: 100%
+
+.list
+    & .list-item
+        display: flex
+        justify-content: center
+        align-items: flex-start
+        flex-direction: column
+        gap: 8px 12px
+        width: 100%
+        & .list-item-label
+            color: $dracula
+        & .list-item-content
+            display: block
+            font-size: 14px
+            line-height: 20px
+            font-weight: 400
+            border-radius: 3px
+            background-color: $list-item-content-bg
+            padding: $list-item-content-p
+            width: $list-item-content-w
+            height: 100% !important
+            &.no-bg
+                background-color: transparent

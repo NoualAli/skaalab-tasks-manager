@@ -1,0 +1,39 @@
+$container-shadows: 0 0 .5em -0.125rem rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%)
+.box
+    background-color: #fff
+    border-radius: 6px
+    box-shadow: $container-shadows
+    color: #4a4a4a
+    // display: block
+    padding: 1.25rem
+    &.is-active
+        background-color: $warning-dark
+        color: $white !important
+        padding: 0 1.25rem !important
+        &:hover
+            background-color: $warning
+    &.is-todo
+        background-color: $info-dark
+        color: $white !important
+        padding: 0 1.25rem !important
+        &:hover
+            background-color: $info
+    &.is-done
+        background-color: $success-dark
+        color: $white !important
+        padding: 0 1.25rem !important
+        &:hover
+            background-color: $success
+    &.is-delay
+        background-color: $danger-dark
+        color: $white !important
+        padding: 0 1.25rem !important
+        &:hover
+            background-color: $danger
+    @each $value in $colors-list
+        &.is-#{nth($value, 1)}
+            box-shadow: 0 0 3px rgba(nth($value, 2),1), 0 0 0 1px rgba(nth($value, 2), 1)
+            background-color: nth($value, 2)
+            // color: darken(nth($value, 2), 25%)
+            color: darkOrWhiteFont(nth($value, 2))
+            border: 1px solid darken(nth($value, 2), 25%)

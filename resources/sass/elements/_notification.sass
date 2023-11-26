@@ -1,0 +1,20 @@
+$notification-background-color: $light !default
+$notification-radius: 0.375em !default
+$notification-padding: 1.25rem 2.5rem 1.25rem 1.5rem !default
+$notification-padding-ltr: 1.25rem 2.5rem 1.25rem 1.5rem !default
+$notification-padding-rtl: 1.25rem 1.5rem 1.25rem 2.5rem !default
+
+$notification-colors: $colors-list !default
+
+.notification
+    background-color: $notification-background-color
+    border-radius: $notification-radius
+    padding: $notification-padding
+    position: relative
+    line-height: 1.5
+    @each $value in $notification-colors
+        $color: nth($value, 2)
+        &.is-#{nth($value, 1)}
+            border: 1px solid $color
+            background-color: rgba($color, .2)
+            color: $color

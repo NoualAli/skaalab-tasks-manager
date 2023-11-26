@@ -1,0 +1,234 @@
+$container-bg: $white
+$container-mw: 100%
+$container-mh: 200px
+$container-m: 1rem 0
+$container-p: 1.25rem
+$container-color: $dark
+$container-br: 6px
+// $container-shadows: 0 .5em 1em -0.125rem rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%)
+$container-shadows: 0 0 .5em -0.125rem rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 2%)
+
+$td-padding: 1rem 1rem
+$th-padding: 1rem
+$table-align: center
+$table-border: none
+
+$tr-border: 1px solid $grey
+
+$link-active-bg: $primary
+$link-active-color: $white
+$link-active-opacity: .5
+
+$cell-font-size: 1rem
+$cell-btn-padding: 0 .3rem
+$cell-min-width: 100px
+$cell-max-width: 500px
+$cell-border: transparent
+$last-cell-border: none
+
+$tr-bg: $white
+$tr-hover-color: $dark
+$tr-hover-bg: rgba($primary-extra-light,.4)
+
+$th-bg: $container-bg
+$th-color: $dark
+$th-fw: bolder
+
+$sortable-th-hover-bg: $th-bg
+$sortable-th-hover-border: rgba($primary, .9)
+$sortable-th-hover-color: $dark
+
+.table-container
+    position: relative
+    min-width: $container-mw
+    width: auto
+    min-height: $container-mh
+    margin: $container-m
+    padding: $container-p
+    color: $container-color
+    background-color: $container-bg
+    border-radius: $container-br
+    box-shadow: $container-shadows
+
+table
+    position: relative
+    table-layout: auto
+    width: $container-mw
+    margin: 1em 0
+    min-width: $mobile
+    color: $dark
+    border-collapse: collapse
+    & th
+        display: none
+    & td
+        position: relative
+        display: block
+        &:before
+            content: attr(data-th)
+            font-weight: bold
+            width: 100%
+            display: block
+    & th,
+    & td
+        position: relative !important
+        margin: 0.5em 1em
+        font-size: $cell-font-size
+        width: auto
+        min-width: $cell-min-width
+        max-width: $cell-max-width
+        // white-space: nowrap
+        &.cell-actions
+            max-width: 300px
+            width: auto
+            min-width: 200px
+            padding: $td-padding
+            & .btn
+                border: none transparent
+                background-color: transparent
+                padding: $cell-btn-padding
+                font-size: $cell-font-size
+                box-shadow: none !important
+                &:hover
+                    border: none !important
+                    background-color: none !important
+                    box-shadow: none !important
+            @each $color in $colors-list
+                & .btn-#{nth($color, 1)}
+                    background-color: transparent
+                    border: none
+                    color: nth($color, 2)
+                    &:hover
+                        background-color: transparent
+                        border: none
+                        color: darken(nth($color, 2), 20%)
+                        box-shadow: none
+    & tbody
+        & tr
+            background-color: $tr-bg
+            border-bottom: $tr-border
+            &:nth-child(odd)
+                background-color: transparent
+            &:hover
+                background-color: $tr-hover-bg
+                color: $tr-hover-color
+.pagination
+    maring: 0 1rem
+    width: 100%
+    & .btn
+        border-radius: 5px
+        &:disabled,
+        &.is-active
+            background-color: $primary
+            cursor: not-allowed
+            color: $light
+.details-row-loader-container
+    position: absolute
+    top: 0
+    left: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    gap: 1rem
+    width: 100%
+    height: 100%
+    user-select: none
+    z-index: 4
+
+.details-row-loader
+    animation: spinAround .5s infinite linear
+    position: relative
+    height: 2rem
+    width: 2rem
+    border-radius: 50%
+    border: .25rem solid $dark
+    border-right-color: transparent
+    border-top-color: transparent
+
+.details-row-loader-text
+    color: $dark
+    font-weight: bold
+    letter-spacing: 1px
+
+.search-bar
+    width: 100%
+
+@keyframes spinAround
+    from
+        rotate: 0
+    to
+        rotate: 360deg
+
+/* Responsive media */
+
+@media (min-width: $desktop)
+    table
+        position: relative
+        // border-radius: $normal-border-radius
+        // box-shadow: $table-shadows
+        & td, & th
+            vertical-align: middle
+            display: table-cell
+            border-left: $cell-border !important
+            &:first-child
+                border: none
+            &:before
+                display: none
+        & th
+            position: sticky !important
+            top: 0 !important
+            z-index: 1
+            background-color: $th-bg
+            color: $th-color
+            padding: $th-padding
+            box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4)
+            font-weight: $th-fw
+            &:first-child
+                border-top-left-radius: $normal-border-radius
+                border: none !important
+            &:last-child
+                border-top-right-radius: $normal-border-radius
+            &.details_row-th,&.bulk-delete-th, &.bulck-delete-th > & .container
+                width: 30px !important
+                max-width: 30px !important
+                padding: 0 !important
+                margin: 0 !important
+                height: 10px !important
+                text-align: center
+            &.is-sortable
+                cursor: pointer !important
+                &:hover, &.is-active
+                    background-color: $sortable-th-hover-bg
+                    color: $sortable-th-hover-color
+                    &:after
+                        scale: 1
+                &:after
+                    content: ''
+                    position: absolute
+                    bottom: -1px
+                    left: 0
+                    width: 100%
+                    scale: 0
+                    height: 2px
+                    border-radius: 2px
+                    background-color: $sortable-th-hover-border
+                    transition: .2s ease
+        & td
+            padding: $td-padding
+            &.details_row-td
+                cursor: pointer
+                text-align: center
+                &:hover
+                    font-weight: bolder
+            &:last-child
+                border: $last-cell-border
+        & tbody
+            overflow: hidden
+        & tr
+            position: relative
+            border-bottom: $tr-border
+            &.details-row
+                background-color: $white !important
+    .pagination
+        flex-direction: row
+    .search-bar
+        width: 200px
